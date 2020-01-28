@@ -8,5 +8,5 @@ setuptools.setup(
     maintainer='Hans Gaiser',
     maintainer_email='h.gaiser@fizyr.com',
     packages=setuptools.find_packages(),
-    install_requires=['keras', 'keras-resnet']
+    install_requires=['keras']
 )
