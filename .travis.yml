@@ -8,13 +8,10 @@ install:
     - pip install 'opencv-python>=3.3.0'
     - pip install 'pillow'
     - pip install 'tensorflow'
-    - pip install 'keras-resnet'
-    - pip install 'keras-retinanet'
     - pip install 'pytest-pep8'
     - pip install 'cython'
     - pip install 'matplotlib'
     - pip install 'h5py'
-    - pip install 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
 cache: pip
 script:
     - py.test --pep8
