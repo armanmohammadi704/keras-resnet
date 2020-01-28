@@ -43,12 +43,12 @@ extensions = [
 
 
 setuptools.setup(
-    name             = 'keras-retinanet',
+    name             = 'keras_resnet',
     version          = '0.5.1',
     description      = 'Keras implementation of RetinaNet object detection.',
-    url              = 'https://github.com/fizyr/keras-retinanet',
-    author           = 'Hans Gaiser',
-    author_email     = 'h.gaiser@fizyr.com',
+    url              = 'https://github.com/armanmohammadi704/keras_resnet',
+    author           = 'Mohammad Rahimzadeh',
+    author_email     = 'mr7495@yahoo.com',
     maintainer       = 'Hans Gaiser',
     maintainer_email = 'h.gaiser@fizyr.com',
     cmdclass         = {'build_ext': BuildExtension},
