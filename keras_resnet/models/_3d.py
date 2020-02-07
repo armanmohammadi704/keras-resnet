@@ -73,8 +73,8 @@ class ResNet3D(keras.Model):
         if numerical_names is None:
             numerical_names = [True] * len(blocks)
 
-        x = keras.layers.ZeroPadding3D(padding=(3,3,1), name="padding_conv1")(inputs)
-        x = keras.layers.Conv3D(64, (7, 7,3), strides=(2, 2,1), use_bias=False, name="conv1")(x)
+        x = keras.layers.ZeroPadding3D(padding=(3,3,0), name="padding_conv1")(inputs)
+        x = keras.layers.Conv3D(64, (7, 7,3), strides=(2, 2,3), use_bias=False, name="conv1")(x)
         x = keras_resnet.layers.BatchNormalization(axis=axis, epsilon=1e-5, freeze=freeze_bn, name="bn_conv1")(x)
         x = keras.layers.Activation("relu", name="conv1_relu")(x)
         x = keras.layers.MaxPooling3D((3, 3,1), strides=(2, 2,1), padding="same", name="pool1")(x)
