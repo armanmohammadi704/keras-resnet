@@ -21,7 +21,7 @@ def basic_3d(
     filters,
     stage=0,
     block=0,
-    kernel_size=(3,3,1),
+    kernel_size=(3,3,3),
     numerical_name=False,
     stride=None,
     freeze_bn=False
@@ -68,7 +68,7 @@ def basic_3d(
     stage_char = str(stage + 2)
 
     def f(x):
-        y = keras.layers.ZeroPadding3D(padding=(1,1,0), name="padding{}{}_branch2a".format(stage_char, block_char))(x)
+        y = keras.layers.ZeroPadding3D(padding=(1,1,1), name="padding{}{}_branch2a".format(stage_char, block_char))(x)
 
         y = keras.layers.Conv3D(filters, kernel_size, strides=stride, use_bias=False, name="res{}{}_branch2a".format(stage_char, block_char), **parameters)(y)
 
@@ -76,7 +76,7 @@ def basic_3d(
 
         y = keras.layers.Activation("relu", name="res{}{}_branch2a_relu".format(stage_char, block_char))(y)
 
-        y = keras.layers.ZeroPadding3D(padding=(1,1,0), name="padding{}{}_branch2b".format(stage_char, block_char))(y)
+        y = keras.layers.ZeroPadding3D(padding=(1,1,1), name="padding{}{}_branch2b".format(stage_char, block_char))(y)
 
         y = keras.layers.Conv3D(filters, kernel_size, use_bias=False, name="res{}{}_branch2b".format(stage_char, block_char), **parameters)(y)
 
@@ -102,7 +102,7 @@ def bottleneck_3d(
     filters,
     stage=0,
     block=0,
-    kernel_size=(3,3,1),
+    kernel_size=(3,3,3),
     numerical_name=False,
     stride=None,
     freeze_bn=False
@@ -155,7 +155,7 @@ def bottleneck_3d(
 
         y = keras.layers.Activation("relu", name="res{}{}_branch2a_relu".format(stage_char, block_char))(y)
 
-        y = keras.layers.ZeroPadding3D(padding=(1,1,0), name="padding{}{}_branch2b".format(stage_char, block_char))(y)
+        y = keras.layers.ZeroPadding3D(padding=(1,1,1), name="padding{}{}_branch2b".format(stage_char, block_char))(y)
 
         y = keras.layers.Conv3D(filters, kernel_size, use_bias=False, name="res{}{}_branch2b".format(stage_char, block_char), **parameters)(y)
 
