@@ -72,7 +72,7 @@ class ResNet2D(keras.Model):
 
         if numerical_names is None:
             numerical_names = [True] * len(blocks)
-        inputs = keras.backend.expand_dims(inputs,axis=4)
+
         x = keras.layers.Conv3D(64, (7, 7,3), strides=(2, 2,1), use_bias=False, name="conv1", padding="same")(inputs)
         x = keras_resnet.layers.BatchNormalization(axis=axis, epsilon=1e-5, freeze=freeze_bn, name="bn_conv1")(x)
         x = keras.layers.Activation("relu", name="conv1_relu")(x)
