@@ -79,7 +79,7 @@ class ResNet2D(keras.Model):
         x = keras.layers.Conv3D(1, (7, 7,3),strides=(2, 2,1), use_bias=False, padding="same")(x)
         #x = keras_resnet.layers.BatchNormalization(axis=axis, epsilon=1e-5, freeze=freeze_bn, name="bn_conv1")(x)
         x = keras.layers.Activation("relu")(x) 
-        x=keras.layers.Reshape((800,-1,9))(x)
+        x=keras.layers.Reshape((400,-1,9))(x)
         x = keras.layers.MaxPooling2D((3, 3), strides=(2, 2), padding="same", name="pool1")(x)
 
         features = 64
