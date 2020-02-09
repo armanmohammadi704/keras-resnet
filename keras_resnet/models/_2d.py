@@ -76,8 +76,30 @@ class ResNet2D(keras.Model):
         x = keras.layers.Conv3D(64, (7, 7,3), strides=(2, 2,1), use_bias=False, name="conv1", padding="same")(inputs)
         x = keras_resnet.layers.BatchNormalization(axis=axis, epsilon=1e-5, freeze=freeze_bn, name="bn_conv1")(x)
         x = keras.layers.Activation("relu", name="conv1_relu")(x)
-        x = keras.layers.Reshape((400,534,7*64))(x)
-        x = keras.layers.MaxPooling2D((3, 3), strides=(2, 2), padding="same", name="pool1")(x)
+        from keras.layers import Layer, Input, Lambda
+        from keras import backend as K
+        import tensorflow as tf
+        from keras.models import Model
+        import numpy as np 
+        def squeeze_middle2axes_operator( x4d ) :
+            shape = tf.shape( x4d ) # get dynamic tensor shape
+            x3d = tf.reshape( x4d, [shape[0], shape[1] * shape[2], shape[3],shape[4] ] )
+            return x3d
+
+        def squeeze_middle2axes_shape( x4d_shape ) :
+            in_batch, in_rows, in_cols, in_filters,inn = x4d_shape
+            if ( None in [ in_rows, in_cols] ) :
+                output_shape = ( in_batch, None, in_filters,inn )
+            else :
+                output_shape = ( in_batch, in_rows * in_cols, in_filters,inn )
+            return output_shape
+
+        # define a dummy model
+        xx = Input( shape=(None, None, 7,64) )
+        yy = Lambda( squeeze_middle2axes_operator, output_shape = squeeze_middle2axes_shape )( xx )
+        
+      
+        x = keras.layers.MaxPooling2D((3, 3), strides=(2, 2), padding="same", name="pool1")(yy)
 
         features = 64
 
