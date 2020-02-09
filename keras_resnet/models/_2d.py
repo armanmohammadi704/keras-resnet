@@ -78,7 +78,7 @@ class ResNet2D(keras.Model):
         x = keras.layers.Activation("relu", name="conv1_relu")(x) 
         x=tf.reshape(
             x,
-            (400,534,7*64))
+            (1,400,534,7*64))
         x = keras.layers.MaxPooling2D((3, 3), strides=(2, 2), padding="same", name="pool1")(x)
 
         features = 64
