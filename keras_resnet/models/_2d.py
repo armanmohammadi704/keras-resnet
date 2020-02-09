@@ -14,7 +14,7 @@ import keras.regularizers
 import keras
 import keras_resnet.blocks
 import keras_resnet.layers
-
+import tensorflow as tf
 
 class ResNet2D(keras.Model):
     """
@@ -76,7 +76,9 @@ class ResNet2D(keras.Model):
         x = keras.layers.Conv3D(64, (7, 7,3), strides=(2, 2,1), use_bias=False, name="conv1", padding="same")(inputs)
         x = keras_resnet.layers.BatchNormalization(axis=axis, epsilon=1e-5, freeze=freeze_bn, name="bn_conv1")(x)
         x = keras.layers.Activation("relu", name="conv1_relu")(x) 
-        x = keras.layers.Reshape((400,534,7*64))(x)
+        x=tf.reshape(
+            x,
+            (400,534,7*64))
         x = keras.layers.MaxPooling2D((3, 3), strides=(2, 2), padding="same", name="pool1")(x)
 
         features = 64
