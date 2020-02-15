@@ -80,9 +80,9 @@ class ResNet2D(keras.Model):
         x = keras.layers.Conv3D(1, (7, 7,1), use_bias=False, name="conv133", padding="same")(x)
         x = keras.layers.Reshape((400,-1,9))(x)
         
-        x = keras.layers.Conv2D(64, (7, 7), use_bias=False, name="conv111", padding="same")(inputs)
-        x = keras.layers.Conv2D(64, (7, 7), use_bias=False, name="conv112", padding="same")(inputs)
-        x = keras.layers.Conv2D(64, (7, 7), use_bias=False, name="conv113", padding="same")(inputs)
+        x = keras.layers.Conv2D(64, (7, 7), use_bias=False, name="conv111", padding="same")(x)
+        x = keras.layers.Conv2D(64, (7, 7), use_bias=False, name="conv112", padding="same")(x)
+        x = keras.layers.Conv2D(64, (7, 7), use_bias=False, name="conv113", padding="same")(x)
         x = keras.layers.Conv2D(64, (7, 7), use_bias=False, name="conv1333", padding="same")(x)
         x = keras.layers.MaxPooling2D((3, 3), strides=(2, 2), padding="same", name="pool1")(x)
         
